@@ -1,10 +1,3 @@
-/* ============================================
-   NAVBAR COMPONENT
-   Autor: Tu Nombre
-   Fecha: 2024
-   Descripción: Barra de navegación principal
-   ============================================ */
-
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';

@@ -1,6 +1,12 @@
+/* ============================================
+   APP ROOT
+   Autor: Tu Nombre
+   Fecha: 2024
+   ============================================ */
+
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Navbar } from './components/navbar/navbar';
+import { Navbar} from './components/navbar/navbar';
 
 @Component({
   selector: 'app-root',
@@ -8,11 +14,23 @@ import { Navbar } from './components/navbar/navbar';
   imports: [RouterOutlet, Navbar],
   template: `
     <app-navbar></app-navbar>
-    <div class="container-fluid mt-4">
+    <div class="main-content">
       <router-outlet></router-outlet>
     </div>
   `,
-  styles: []
+  styles: [`
+    .main-content {
+      padding: 30px;
+      min-height: calc(100vh - 80px);
+      background: #f5f7fa;
+    }
+    
+    @media (max-width: 768px) {
+      .main-content {
+        padding: 15px;
+      }
+    }
+  `]
 })
 export class AppComponent {
   title = 'gestor-cursos';

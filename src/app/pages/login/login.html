@@ -1,67 +1,115 @@
-<div class="login-container">
-  <div class="card shadow">
-    <div class="card-body">
-      <h2 class="text-center mb-4">
-        <i class="bi bi-box-arrow-in-right"></i> Iniciar Sesión
-      </h2>
-      
-      <div class="alert alert-danger" *ngIf="errorMessage">
-        <i class="bi bi-exclamation-triangle"></i> {{ errorMessage }}
+<div class="login-page">
+  <div class="login-container">
+    <div class="login-left">
+      <div class="login-illustration">
+        <div class="floating-icons">
+          <i class="bi bi-book icon-1"></i>
+          <i class="bi bi-mortarboard icon-2"></i>
+          <i class="bi bi-journal-bookmark icon-3"></i>
+          <i class="bi bi-trophy icon-4"></i>
+        </div>
+        <h1>Bienvenido de vuelta</h1>
+        <p>Gestiona tus cursos y estudiantes de manera eficiente</p>
+        <div class="features">
+          <div class="feature-item">
+            <i class="bi bi-check-circle-fill"></i>
+            <span>Gestión completa de cursos</span>
+          </div>
+          <div class="feature-item">
+            <i class="bi bi-check-circle-fill"></i>
+            <span>Control de estudiantes</span>
+          </div>
+          <div class="feature-item">
+            <i class="bi bi-check-circle-fill"></i>
+            <span>Estadísticas en tiempo real</span>
+          </div>
+        </div>
       </div>
-      
-      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-        <div class="mb-3">
-          <label for="email" class="form-label">Correo Electrónico</label>
-          <input 
-            type="email" 
-            class="form-control" 
-            id="email"
-            formControlName="email"
-            [class.is-invalid]="email?.invalid && email?.touched"
-            placeholder="tu@email.com">
-          
-          <div class="invalid-feedback" *ngIf="email?.invalid && email?.touched">
-            <span *ngIf="email?.errors?.['required']">El correo es obligatorio.</span>
-            <span *ngIf="email?.errors?.['email']">Ingresa un correo válido.</span>
+    </div>
+    
+    <div class="login-right">
+      <div class="login-card">
+        <div class="login-header">
+          <div class="logo-circle">
+            <i class="bi bi-mortarboard-fill"></i>
           </div>
+          <h2>Iniciar Sesión</h2>
+          <p>Ingresa tus credenciales para continuar</p>
         </div>
         
-        <div class="mb-3">
-          <label for="password" class="form-label">Contraseña</label>
-          <input 
-            type="password" 
-            class="form-control" 
-            id="password"
-            formControlName="password"
-            [class.is-invalid]="password?.invalid && password?.touched"
-            placeholder="Mínimo 6 caracteres">
-          
-          <div class="invalid-feedback" *ngIf="password?.invalid && password?.touched">
-            <span *ngIf="password?.errors?.['required']">La contraseña es obligatoria.</span>
-            <span *ngIf="password?.errors?.['minlength']">Mínimo 6 caracteres.</span>
+        <div class="alert-custom alert-danger" *ngIf="errorMessage">
+          <i class="bi bi-exclamation-circle"></i>
+          <span>{{ errorMessage }}</span>
+        </div>
+        
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <div class="form-group-custom">
+            <label for="email">
+              <i class="bi bi-envelope"></i>
+              Correo Electrónico
+            </label>
+            <input 
+              type="email" 
+              class="input-custom" 
+              id="email"
+              formControlName="email"
+              [class.input-error]="email?.invalid && email?.touched"
+              placeholder="ejemplo@correo.com">
+            
+            <div class="error-message" *ngIf="email?.invalid && email?.touched">
+              <i class="bi bi-exclamation-triangle"></i>
+              <span *ngIf="email?.errors?.['required']">El correo es obligatorio</span>
+              <span *ngIf="email?.errors?.['email']">Correo inválido</span>
+            </div>
           </div>
-        </div>
-        
-        <button 
-          type="submit" 
-          class="btn btn-primary w-100 mb-3"
-          [disabled]="loading">
-          <span *ngIf="!loading">
-            <i class="bi bi-box-arrow-in-right"></i> Ingresar
-          </span>
-          <span *ngIf="loading">
-            <span class="spinner-border spinner-border-sm me-2"></span>
-            Ingresando...
-          </span>
-        </button>
-        
-        <div class="text-center">
-          <p class="mb-0">
-            ¿No tienes cuenta? 
-            <a routerLink="/register" class="text-decoration-none">Regístrate aquí</a>
-          </p>
-        </div>
-      </form>
+          
+          <div class="form-group-custom">
+            <label for="password">
+              <i class="bi bi-lock"></i>
+              Contraseña
+            </label>
+            <input 
+              type="password" 
+              class="input-custom" 
+              id="password"
+              formControlName="password"
+              [class.input-error]="password?.invalid && password?.touched"
+              placeholder="Mínimo 6 caracteres">
+            
+            <div class="error-message" *ngIf="password?.invalid && password?.touched">
+              <i class="bi bi-exclamation-triangle"></i>
+              <span *ngIf="password?.errors?.['required']">La contraseña es obligatoria</span>
+              <span *ngIf="password?.errors?.['minlength']">Mínimo 6 caracteres</span>
+            </div>
+          </div>
+          
+          <button 
+            type="submit" 
+            class="btn-submit"
+            [disabled]="loading">
+            <span *ngIf="!loading">
+              <i class="bi bi-box-arrow-in-right"></i>
+              Ingresar
+            </span>
+            <span *ngIf="loading" class="loading-spinner">
+              <span class="spinner"></span>
+              Ingresando...
+            </span>
+          </button>
+          
+          <div class="divider">
+            <span>o</span>
+          </div>
+          
+          <div class="register-link">
+            <p>¿No tienes cuenta?</p>
+            <a routerLink="/register">
+              Regístrate aquí
+              <i class="bi bi-arrow-right"></i>
+            </a>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </div>
