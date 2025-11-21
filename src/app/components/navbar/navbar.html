@@ -1,0 +1,67 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/dashboard">
+      <i class="bi bi-book"></i> Gestor de Cursos
+    </a>
+    
+    <button 
+      class="navbar-toggler" 
+      type="button" 
+      (click)="toggleMenu()"
+      [attr.aria-expanded]="isMenuOpen">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse" [class.show]="isMenuOpen">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item" *ngIf="authService.user$ | async">
+          <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">
+            <i class="bi bi-speedometer2"></i> Dashboard
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="authService.user$ | async">
+          <a class="nav-link" routerLink="/cursos" routerLinkActive="active">
+            <i class="bi bi-journal-bookmark"></i> Cursos
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="authService.user$ | async">
+          <a class="nav-link" routerLink="/estudiantes" routerLinkActive="active">
+            <i class="bi bi-people"></i> Estudiantes
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="authService.user$ | async">
+          <a class="nav-link" routerLink="/estadisticas" routerLinkActive="active">
+            <i class="bi bi-graph-up"></i> Estadísticas
+          </a>
+        </li>
+      </ul>
+      
+      <div class="d-flex align-items-center">
+        <span class="navbar-text me-3" *ngIf="authService.user$ | async as user">
+          <i class="bi bi-person-circle"></i> {{ user.email }}
+        </span>
+        
+        <button 
+          class="btn btn-outline-light btn-sm" 
+          *ngIf="authService.user$ | async"
+          (click)="logout()">
+          <i class="bi bi-box-arrow-right"></i> Salir
+        </button>
+        
+        <a 
+          class="btn btn-outline-light btn-sm me-2" 
+          routerLink="/login"
+          *ngIf="!(authService.user$ | async)">
+          <i class="bi bi-box-arrow-in-right"></i> Ingresar
+        </a>
+        
+        <a 
+          class="btn btn-light btn-sm" 
+          routerLink="/register"
+          *ngIf="!(authService.user$ | async)">
+          <i class="bi bi-person-plus"></i> Registrarse
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>

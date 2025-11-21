@@ -1,0 +1,195 @@
+<div class="curso-detalle-container">
+  <app-loading *ngIf="loading"></app-loading>
+  
+  <div *ngIf="!loading && curso">
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h1>
+        <i class="bi bi-journal-bookmark"></i> Detalle del Curso
+      </h1>
+      <div>
+        <a routerLink="/cursos" class="btn btn-secondary me-2">
+          <i class="bi bi-arrow-left"></i> Volver
+        </a>
+        <a [routerLink]="['/cursos/editar', cursoId]" class="btn btn-warning">
+          <i class="bi bi-pencil"></i> Editar
+        </a>
+      </div>
+    </div>
+    
+    <!-- Información principal -->
+    <div class="row">
+      <div class="col-lg-8 mb-4">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-start mb-3">
+              <div>
+                <h2 class="card-title mb-2">{{ curso.nombre }}</h2>
+                <p class="text-muted">
+                  <i class="bi bi-person"></i> {{ curso.instructor }}
+                </p>
+              </div>
+              <span class="badge fs-6"
+                    [ngClass]="{
+                      'bg-success': curso.estado === 'activo',
+                      'bg-danger': curso.estado === 'cancelado',
+                      'bg-warning': curso.estado === 'finalizado'
+                    }">
+                {{ curso.estado }}
+              </span>
+            </div>
+            
+            <hr>
+            
+            <h5><i class="bi bi-file-text"></i> Descripción</h5>
+            <p class="mb-4">{{ curso.descripcion }}</p>
+            
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <strong><i class="bi bi-tag"></i> Categoría:</strong>
+                <span class="badge bg-secondary ms-2">{{ curso.categoria }}</span>
+              </div>
+              
+              <div class="col-md-6 mb-3">
+                <strong><i class="bi bi-clock"></i> Duración:</strong>
+                <span class="ms-2">{{ curso.duracion }} horas</span>
+              </div>
+              
+              <div class="col-md-6 mb-3">
+                <strong><i class="bi bi-currency-dollar"></i> Precio:</strong>
+                <span class="ms-2">${{ curso.precio }}</span>
+              </div>
+              
+              <div class="col-md-6 mb-3">
+                <strong><i class="bi bi-people"></i> Estudiantes:</strong>
+                <span class="ms-2">{{ curso.estudiantesInscritos }}</span>
+              </div>
+              
+              <div class="col-md-6 mb-3">
+                <strong><i class="bi bi-calendar-event"></i> Inicio:</strong>
+                <span class="ms-2">{{ curso.fechaInicio | date:'dd/MM/yyyy' }}</span>
+              </div>
+              
+              <div class="col-md-6 mb-3">
+                <strong><i class="bi bi-calendar-check"></i> Fin:</strong>
+                <span class="ms-2">{{ curso.fechaFin | date:'dd/MM/yyyy' }}</span>
+              </div>
+            </div>
+            
+            <div class="alert alert-info" *ngIf="getDiasRestantes() > 0 && curso.estado === 'activo'">
+              <i class="bi bi-info-circle"></i>
+              Faltan <strong>{{ getDiasRestantes() }}</strong> días para finalizar el curso.
+            </div>
+            
+            <div class="alert alert-warning" *ngIf="getDiasRestantes() <= 0 && curso.estado === 'activo'">
+              <i class="bi bi-exclamation-triangle"></i>
+              El curso ya finalizó. Considera actualizar su estado.
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Panel lateral -->
+      <div class="col-lg-4">
+        <div class="card mb-4">
+          <div class="card-body">
+            <h5 class="card-title">
+              <i class="bi bi-bar-chart"></i> Estadísticas
+            </h5>
+            <hr>
+            
+            <div class="stat-item">
+  <span class="stat-label">Estudiantes Activos:</span>
+  <span class="stat-value">{{ getEstudiantesActivos() }}</span>
+</div>
+
+<div class="stat-item">
+  <span class="stat-label">Estudiantes Graduados:</span>
+  <span class="stat-value">{{ getEstudiantesGraduados() }}</span>
+</div>
+            
+            <div class="stat-item">
+              <span class="stat-label">Total Inscritos:</span>
+              <span class="stat-value">{{ estudiantes.length }}</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">
+              <i class="bi bi-lightning"></i> Acciones Rápidas
+            </h5>
+            <hr>
+            <div class="d-grid gap-2">
+              <a [routerLink]="['/estudiantes/nuevo']" 
+                 [queryParams]="{cursoId: cursoId}"
+                 class="btn btn-primary btn-sm">
+                <i class="bi bi-person-plus"></i> Inscribir Estudiante
+              </a>
+              <a routerLink="/estudiantes" class="btn btn-info btn-sm text-white">
+                <i class="bi bi-people"></i> Ver Estudiantes
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Lista de estudiantes -->
+    <div class="card mt-4">
+      <div class="card-body">
+        <h5 class="card-title">
+          <i class="bi bi-people"></i> Estudiantes Inscritos ({{ estudiantes.length }})
+        </h5>
+        
+        <div *ngIf="estudiantes.length === 0" class="alert alert-info">
+          <i class="bi bi-info-circle"></i> No hay estudiantes inscritos en este curso.
+        </div>
+        
+        <div class="table-responsive" *ngIf="estudiantes.length > 0">
+          <table class="table table-hover">
+            <thead class="table-light">
+              <tr>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Teléfono</th>
+                <th>Estado</th>
+                <th>Fecha Inscripción</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let estudiante of estudiantes">
+                <td>{{ estudiante.nombre }} {{ estudiante.apellido }}</td>
+                <td>{{ estudiante.email }}</td>
+                <td>{{ estudiante.telefono }}</td>
+                <td>
+                  <span class="badge"
+                        [ngClass]="{
+                          'bg-success': estudiante.estado === 'activo',
+                          'bg-secondary': estudiante.estado === 'inactivo',
+                          'bg-primary': estudiante.estado === 'graduado'
+                        }">
+                    {{ estudiante.estado }}
+                  </span>
+                </td>
+                <td>{{ estudiante.fechaInscripcion | date:'dd/MM/yyyy' }}</td>
+                <td>
+                  <a [routerLink]="['/estudiantes/detalle', estudiante.id]" 
+                     class="btn btn-sm btn-info text-white">
+                    <i class="bi bi-eye"></i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div *ngIf="!loading && !curso" class="alert alert-warning">
+    <i class="bi bi-exclamation-triangle"></i> Curso no encontrado.
+  </div>
+</div>
