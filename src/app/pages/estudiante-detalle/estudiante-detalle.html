@@ -1,1 +1,156 @@
-<p>estudiante-detalle works!</p>
+<div class="estudiante-detalle-container">
+  <app-loading *ngIf="loading"></app-loading>
+  
+  <div *ngIf="!loading && estudiante">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h1>
+        <i class="bi bi-person-badge"></i> Detalle del Estudiante
+      </h1>
+      <div>
+        <a routerLink="/estudiantes" class="btn btn-secondary me-2">
+          <i class="bi bi-arrow-left"></i> Volver
+        </a>
+        <a [routerLink]="['/estudiantes/editar', estudianteId]" class="btn btn-warning">
+          <i class="bi bi-pencil"></i> Editar
+        </a>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-lg-8 mb-4">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-start mb-3">
+              <div>
+                <h2 class="card-title mb-2">{{ estudiante.nombre }} {{ estudiante.apellido }}</h2>
+                <p class="text-muted">
+                  <i class="bi bi-envelope"></i> {{ estudiante.email }}
+                </p>
+              </div>
+              <span class="badge fs-6"
+                    [ngClass]="{
+                      'bg-success': estudiante.estado === 'activo',
+                      'bg-secondary': estudiante.estado === 'inactivo',
+                      'bg-primary': estudiante.estado === 'graduado'
+                    }">
+                {{ estudiante.estado }}
+              </span>
+            </div>
+            
+            <hr>
+            
+            <h5><i class="bi bi-info-circle"></i> Información Personal</h5>
+            
+            <div class="row mb-4">
+              <div class="col-md-6 mb-3">
+                <strong><i class="bi bi-telephone"></i> Teléfono:</strong>
+                <p class="mb-0">{{ estudiante.telefono }}</p>
+              </div>
+              
+              <div class="col-md-6 mb-3">
+                <strong><i class="bi bi-calendar3"></i> Fecha de Nacimiento:</strong>
+                <p class="mb-0">{{ estudiante.fechaNacimiento | date:'dd/MM/yyyy' }}</p>
+              </div>
+              
+              <div class="col-md-6 mb-3">
+                <strong><i class="bi bi-person"></i> Edad:</strong>
+                <p class="mb-0">{{ getEdad() }} años</p>
+              </div>
+              
+              <div class="col-md-6 mb-3">
+                <strong><i class="bi bi-calendar-check"></i> Fecha de Inscripción:</strong>
+                <p class="mb-0">{{ estudiante.fechaInscripcion | date:'dd/MM/yyyy' }}</p>
+              </div>
+            </div>
+            
+            <hr>
+            
+            <h5><i class="bi bi-book"></i> Curso Inscrito</h5>
+            
+            <div class="card bg-light" *ngIf="curso">
+              <div class="card-body">
+                <h6 class="card-title mb-2">{{ curso.nombre }}</h6>
+                <p class="card-text text-muted mb-2">{{ curso.descripcion }}</p>
+                
+                <div class="row">
+                  <div class="col-md-6">
+                    <small><strong>Instructor:</strong> {{ curso.instructor }}</small>
+                  </div>
+                  <div class="col-md-6">
+                    <small><strong>Categoría:</strong> 
+                      <span class="badge bg-secondary">{{ curso.categoria }}</span>
+                    </small>
+                  </div>
+                </div>
+                
+                <div class="mt-3">
+                  <a [routerLink]="['/cursos/detalle', curso.id]" class="btn btn-sm btn-primary">
+                    <i class="bi bi-eye"></i> Ver Curso
+                  </a>
+                </div>
+              </div>
+            </div>
+            
+            <div class="alert alert-warning" *ngIf="!curso">
+              <i class="bi bi-exclamation-triangle"></i> No se pudo cargar la información del curso.
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-lg-4">
+        <div class="card mb-4">
+          <div class="card-body">
+            <h5 class="card-title">
+              <i class="bi bi-bar-chart"></i> Estadísticas
+            </h5>
+            <hr>
+            
+            <div class="stat-item">
+              <span class="stat-label">Días Inscrito:</span>
+              <span class="stat-value">{{ getDiasInscritos() }}</span>
+            </div>
+            
+            <div class="stat-item">
+              <span class="stat-label">Estado:</span>
+              <span class="stat-value">
+                <span class="badge"
+                      [ngClass]="{
+                        'bg-success': estudiante.estado === 'activo',
+                        'bg-secondary': estudiante.estado === 'inactivo',
+                        'bg-primary': estudiante.estado === 'graduado'
+                      }">
+                  {{ estudiante.estado }}
+                </span>
+              </span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">
+              <i class="bi bi-lightning"></i> Acciones Rápidas
+            </h5>
+            <hr>
+            <div class="d-grid gap-2">
+              <a [routerLink]="['/estudiantes/editar', estudianteId]" class="btn btn-warning btn-sm">
+                <i class="bi bi-pencil"></i> Editar Información
+              </a>
+              <a [routerLink]="['/cursos/detalle', estudiante.cursoId]" class="btn btn-info btn-sm text-white">
+                <i class="bi bi-book"></i> Ver Curso
+              </a>
+              <a routerLink="/estudiantes" class="btn btn-secondary btn-sm">
+                <i class="bi bi-arrow-left"></i> Volver a Lista
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div *ngIf="!loading && !estudiante" class="alert alert-warning">
+    <i class="bi bi-exclamation-triangle"></i> Estudiante no encontrado.
+  </div>
+</div>
