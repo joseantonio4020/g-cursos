@@ -1,50 +1,145 @@
 .estadisticas-container {
-  padding: 20px;
+  padding: 30px;
+}
+
+.estadisticas-container h1 {
+  color: #333;
+  font-weight: 700;
+  margin-bottom: 30px;
+  font-size: 2.5rem;
+}
+
+.estadisticas-container h1 i {
+  margin-right: 12px;
+  color: #667eea;
 }
 
 .stats-card {
   border: none;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+  overflow: hidden;
+  position: relative;
+}
+
+.stats-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.3), transparent);
 }
 
 .stats-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-8px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.12);
 }
 
 .stats-card .card-body {
-  padding: 1.5rem;
+  padding: 2rem;
 }
 
 .stats-card h6 {
-  font-size: 0.9rem;
-  opacity: 0.9;
+  font-size: 0.85rem;
+  opacity: 0.85;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
 }
 
 .stats-card h2 {
-  font-size: 2.5rem;
-  font-weight: bold;
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.stats-card small {
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+.card {
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+  border: none;
+  overflow: hidden;
+}
+
+.card-body {
+  padding: 25px;
 }
 
 .card-title {
-  color: #0d6efd;
-  font-weight: bold;
+  color: #333;
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+}
+
+.card-title i {
+  margin-right: 10px;
+  color: #667eea;
 }
 
 .stat-row {
   display: flex;
   justify-content: space-between;
-  padding: 0.5rem 0;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #f0f0f0;
+  transition: all 0.3s ease;
+}
+
+.stat-row:hover {
+  padding-left: 8px;
+  background-color: #f8f9ff;
+}
+
+.stat-row:last-child {
+  border-bottom: none;
+}
+
+.stat-row span:first-child {
+  color: #666;
+  font-weight: 500;
+}
+
+.stat-row strong {
+  color: #667eea;
+  font-weight: 700;
 }
 
 .category-item {
-  margin-bottom: 1rem;
+  margin-bottom: 18px;
+}
+
+.category-item span {
+  font-weight: 600;
+  color: #333;
+}
+
+.progress {
+  height: 8px;
+  border-radius: 10px;
+  background-color: #e9ecef;
+}
+
+.progress-bar {
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
 }
 
 .popular-course-item {
-  padding: 1rem 0;
-  border-bottom: 1px solid #eee;
+  padding: 15px 0;
+  border-bottom: 1px solid #f0f0f0;
+  transition: all 0.3s ease;
+}
+
+.popular-course-item:hover {
+  padding-left: 10px;
+  background-color: #f8f9ff;
 }
 
 .popular-course-item:last-child {
@@ -52,14 +147,40 @@
 }
 
 .rank-badge {
-  width: 40px;
-  height: 40px;
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
-  background-color: #0d6efd;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: bold;
-  font-size: 1.2rem;
+  font-weight: 700;
+  font-size: 1.1rem;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.bg-light {
+  background: linear-gradient(135deg, #f8f9ff 0%, #f0f2ff 100%) !important;
+  border-radius: 15px;
+}
+
+.bg-light .card-body {
+  padding: 25px;
+}
+
+.bg-light h5 {
+  color: #333;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.bg-light p {
+  color: #666;
+  line-height: 1.6;
+}
+
+.bg-light strong {
+  color: #667eea;
+  font-weight: 700;
 }

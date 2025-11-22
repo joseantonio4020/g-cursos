@@ -4,19 +4,223 @@
   align-items: center;
   min-height: calc(100vh - 120px);
   padding: 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.register-container::before {
+  content: '';
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 50%;
+  top: -200px;
+  right: -200px;
+  animation: pulse 4s infinite;
+}
+
+.register-container::after {
+  content: '';
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 50%;
+  bottom: -150px;
+  left: -150px;
+  animation: pulse 4s infinite 2s;
 }
 
 .register-container .card {
   width: 100%;
-  max-width: 450px;
-  border-radius: 10px;
+  max-width: 500px;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  border: none;
+  animation: fadeIn 0.6s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.register-container .card-body {
+  padding: 40px;
 }
 
 .register-container h2 {
-  color: #0d6efd;
-  font-weight: bold;
+  color: #333;
+  font-weight: 700;
+  margin-bottom: 10px;
+  font-size: 1.8rem;
 }
 
 .register-container h2 i {
   font-size: 1.8rem;
+  margin-right: 10px;
+  color: #667eea;
+}
+
+.register-container p {
+  color: #666;
+  margin-bottom: 25px;
+  font-size: 0.95rem;
+}
+
+.form-label {
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+}
+
+.form-label i {
+  margin-right: 6px;
+  color: #667eea;
+}
+
+.form-control, .form-select {
+  border-radius: 10px;
+  border: 2px solid #e0e0e0;
+  padding: 12px 16px;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+  margin-bottom: 15px;
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.15);
+  outline: none;
+}
+
+.form-control.is-invalid, .form-select.is-invalid {
+  border-color: #ff6b6b;
+}
+
+.form-control.is-invalid:focus, .form-select.is-invalid:focus {
+  box-shadow: 0 0 0 0.2rem rgba(255, 107, 107, 0.15);
+}
+
+.invalid-feedback {
+  color: #ff6b6b;
+  font-size: 0.85rem;
+  margin-top: -10px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.btn-submit {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.btn-submit:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(102, 126, 234, 0.6);
+}
+
+.btn-submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.alert-custom {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px 20px;
+  border-radius: 15px;
+  margin-bottom: 20px;
+  animation: slideInRight 0.3s ease;
+}
+
+.alert-danger {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+  color: white;
+}
+
+.alert-custom i {
+  font-size: 1.3rem;
+}
+
+.login-link {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.login-link p {
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.login-link a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #667eea;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.login-link a:hover {
+  gap: 12px;
+  color: #764ba2;
+}
+
+.login-link a i {
+  transition: transform 0.3s ease;
+}
+
+.login-link a:hover i {
+  transform: translateX(5px);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }

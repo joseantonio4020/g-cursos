@@ -1,14 +1,67 @@
 .estudiantes-list-container {
-  padding: 20px;
+  padding: 30px;
+}
+
+.estudiantes-list-container h1 {
+  color: #333;
+  font-weight: 700;
+  margin-bottom: 25px;
+  font-size: 2.2rem;
+}
+
+.estudiantes-list-container h1 i {
+  margin-right: 12px;
+  color: #667eea;
+}
+
+.table {
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.08);
 }
 
 .table th {
+  font-weight: 700;
+  color: white;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+  padding: 18px 15px;
+  border: none;
+}
+
+.table tbody tr {
+  border-bottom: 1px solid #f0f0f0;
+  transition: all 0.3s ease;
+}
+
+.table tbody tr:hover {
+  background-color: #f8f9ff;
+  transform: none;
+}
+
+.table tbody td {
+  padding: 18px 15px;
+  vertical-align: middle;
+  color: #333;
+}
+
+.table tbody strong {
+  color: #667eea;
   font-weight: 600;
-  color: #495057;
 }
 
 .btn-group-sm .btn {
-  padding: 0.25rem 0.5rem;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  margin: 0 2px;
+}
+
+.btn-group-sm .btn i {
+  margin-right: 3px;
 }
 
 .modal.show {
@@ -17,4 +70,50 @@
 
 .modal-backdrop.show {
   opacity: 0.5;
+}
+
+.card {
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+  border: none;
+  margin-bottom: 25px;
+}
+
+.card-body {
+  padding: 25px;
+}
+
+.card-title {
+  color: #333;
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+}
+
+.card-title i {
+  margin-right: 10px;
+  color: #667eea;
+}
+
+.form-label {
+  color: #555;
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+}
+
+.form-label i {
+  margin-right: 6px;
+  color: #667eea;
+}
+
+.alert {
+  border-radius: 15px;
+  border: none;
+  padding: 20px;
+  margin-bottom: 25px;
+}
+
+.alert i {
+  margin-right: 10px;
 }

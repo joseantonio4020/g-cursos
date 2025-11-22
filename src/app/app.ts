@@ -15,13 +15,15 @@ import { NavbarComponent } from './components/navbar/navbar';
   styles: [`
     .main-content {
       padding: 30px;
-      min-height: calc(100vh - 80px);
+      margin-top: 70px;
+      min-height: calc(100vh - 70px);
       background: #f5f7fa;
     }
     
     @media (max-width: 768px) {
       .main-content {
         padding: 15px;
+        margin-top: 70px;
       }
     }
   `]
