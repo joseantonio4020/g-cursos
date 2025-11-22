@@ -1,23 +1,17 @@
-/* ============================================
-   APP ROOT
-   Autor: Tu Nombre
-   Fecha: 2024
-   ============================================ */
-
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Navbar} from './components/navbar/navbar';
+import { NavbarComponent } from './components/navbar/navbar';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, Navbar],
+  imports: [RouterOutlet, NavbarComponent],
   template: `
     <app-navbar></app-navbar>
     <div class="main-content">
       <router-outlet></router-outlet>
     </div>
-  `,
+`,
   styles: [`
     .main-content {
       padding: 30px;
@@ -32,6 +26,6 @@ import { Navbar} from './components/navbar/navbar';
     }
   `]
 })
-export class AppComponent {
+export class App{
   title = 'gestor-cursos';
 }
