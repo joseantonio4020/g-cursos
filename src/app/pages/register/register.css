@@ -4,7 +4,7 @@
   align-items: center;
   min-height: calc(100vh - 120px);
   padding: 20px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #72daba 0%, #6deee7 100%);
   position: relative;
   overflow: hidden;
 }
@@ -81,7 +81,7 @@
 
 .form-control, .form-select {
   border-radius: 10px;
-  border: 2px solid #e0e0e0;
+  border: 2px solid #67f3b2;
   padding: 12px 16px;
   transition: all 0.3s ease;
   font-size: 0.95rem;
