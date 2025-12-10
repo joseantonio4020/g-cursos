@@ -1,196 +1,320 @@
-<div class="estadisticas-container">
-  <h1 class="mb-4">
-    <i class="bi bi-graph-up"></i> Estadísticas Generales
-  </h1>
-  
+<div class="estadisticas-wrapper">
+  <!-- Header -->
+  <div class="estadisticas-header">
+    <div class="header-content">
+      <div class="title-section">
+        <div class="icon-badge">
+          <i class="bi bi-graph-up-arrow"></i>
+        </div>
+        <div>
+          <h1>Estadísticas Generales</h1>
+          <p>Análisis completo de tu plataforma</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading -->
   <app-loading *ngIf="loading"></app-loading>
-  
-  <div *ngIf="!loading">
-    <div class="row g-4 mb-4">
-      <div class="col-md-3 col-sm-6">
-        <div class="card stats-card bg-primary text-white">
-          <div class="card-body">
-            <h6 class="card-subtitle mb-2">Total Cursos</h6>
-            <h2 class="card-title mb-0">{{ totalCursos }}</h2>
+
+  <!-- Content -->
+  <div *ngIf="!loading" class="estadisticas-content">
+    
+    <!-- Stats Cards -->
+    <div class="stats-grid">
+      <div class="stat-card-modern purple">
+        <div class="stat-bg-decoration"></div>
+        <div class="stat-icon-modern">
+          <i class="bi bi-journal-bookmark"></i>
+        </div>
+        <div class="stat-details">
+          <p class="stat-label-modern">Total Cursos</p>
+          <h2 class="stat-value-modern">{{ totalCursos }}</h2>
+          <div class="stat-progress-bar">
+            <div class="stat-progress-fill" style="width: 100%"></div>
           </div>
         </div>
       </div>
-      
-      <div class="col-md-3 col-sm-6">
-        <div class="card stats-card bg-success text-white">
-          <div class="card-body">
-            <h6 class="card-subtitle mb-2">Cursos Activos</h6>
-            <h2 class="card-title mb-0">{{ cursosActivos }}</h2>
-            <small>{{ getPorcentajeCursosActivos() | number:'1.0-0' }}% del total</small>
+
+      <div class="stat-card-modern green">
+        <div class="stat-bg-decoration"></div>
+        <div class="stat-icon-modern">
+          <i class="bi bi-check-circle"></i>
+        </div>
+        <div class="stat-details">
+          <p class="stat-label-modern">Cursos Activos</p>
+          <h2 class="stat-value-modern">{{ cursosActivos }}</h2>
+          <p class="stat-percentage">{{ getPorcentajeCursosActivos() | number:'1.0-0' }}% del total</p>
+        </div>
+      </div>
+
+      <div class="stat-card-modern blue">
+        <div class="stat-bg-decoration"></div>
+        <div class="stat-icon-modern">
+          <i class="bi bi-people"></i>
+        </div>
+        <div class="stat-details">
+          <p class="stat-label-modern">Total Estudiantes</p>
+          <h2 class="stat-value-modern">{{ totalEstudiantes }}</h2>
+          <div class="stat-progress-bar">
+            <div class="stat-progress-fill" style="width: 100%"></div>
           </div>
         </div>
       </div>
-      
-      <div class="col-md-3 col-sm-6">
-        <div class="card stats-card bg-info text-white">
-          <div class="card-body">
-            <h6 class="card-subtitle mb-2">Total Estudiantes</h6>
-            <h2 class="card-title mb-0">{{ totalEstudiantes }}</h2>
-          </div>
+
+      <div class="stat-card-modern orange">
+        <div class="stat-bg-decoration"></div>
+        <div class="stat-icon-modern">
+          <i class="bi bi-star"></i>
         </div>
-      </div>
-      
-      <div class="col-md-3 col-sm-6">
-        <div class="card stats-card bg-warning text-white">
-          <div class="card-body">
-            <h6 class="card-subtitle mb-2">Estudiantes Activos</h6>
-            <h2 class="card-title mb-0">{{ estudiantesActivos }}</h2>
-            <small>{{ getPorcentajeEstudiantesActivos() | number:'1.0-0' }}% del total</small>
-          </div>
+        <div class="stat-details">
+          <p class="stat-label-modern">Estudiantes Activos</p>
+          <h2 class="stat-value-modern">{{ estudiantesActivos }}</h2>
+          <p class="stat-percentage">{{ getPorcentajeEstudiantesActivos() | number:'1.0-0' }}% del total</p>
         </div>
       </div>
     </div>
-    
-    <div class="row g-4 mb-4">
-      <div class="col-lg-6">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">
-              <i class="bi bi-journal-bookmark"></i> Estadísticas de Cursos
-            </h5>
-            <hr>
-            
-            <div class="stat-row">
-              <span>Activos:</span>
-              <span class="badge bg-success">{{ cursosActivos }}</span>
-            </div>
-            <div class="stat-row">
-              <span>Finalizados:</span>
-              <span class="badge bg-warning">{{ cursosFinalizados }}</span>
-            </div>
-            <div class="stat-row">
-              <span>Cancelados:</span>
-              <span class="badge bg-danger">{{ cursosCancelados }}</span>
-            </div>
-            
-            <hr>
-            
-            <div class="stat-row">
-              <span>Precio Promedio:</span>
-              <strong>S/{{ precioPromedio | number:'1.2-2' }}</strong>
-            </div>
-            <div class="stat-row">
-              <span>Duración Promedio:</span>
-              <strong>{{ duracionPromedio | number:'1.0-0' }} horas</strong>
-            </div>
-          </div>
-        </div>
-      </div>
+
+    <!-- Details Grid -->
+    <div class="details-grid">
       
-      <div class="col-lg-6">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">
-              <i class="bi bi-people"></i> Estadísticas de Estudiantes
-            </h5>
-            <hr>
-            
-            <div class="stat-row">
-              <span>Activos:</span>
-              <span class="badge bg-success">{{ estudiantesActivos }}</span>
+      <!-- Estadísticas de Cursos -->
+      <div class="detail-card">
+        <div class="detail-header">
+          <div class="detail-icon purple">
+            <i class="bi bi-journal-bookmark"></i>
+          </div>
+          <div>
+            <h3>Estadísticas de Cursos</h3>
+            <p>Resumen de estados</p>
+          </div>
+        </div>
+
+        <div class="detail-stats">
+          <div class="detail-stat-item">
+            <div class="detail-stat-info">
+              <span class="detail-stat-label">Activos</span>
+              <span class="detail-stat-value green">{{ cursosActivos }}</span>
             </div>
-            <div class="stat-row">
-              <span>Inactivos:</span>
-              <span class="badge bg-secondary">{{ estudiantesInactivos }}</span>
+            <div class="detail-stat-bar">
+              <div class="detail-bar-fill green" 
+                   [style.width.%]="totalCursos > 0 ? (cursosActivos / totalCursos * 100) : 0"></div>
             </div>
-            <div class="stat-row">
-              <span>Graduados:</span>
-              <span class="badge bg-primary">{{ estudiantesGraduados }}</span>
+          </div>
+
+          <div class="detail-stat-item">
+            <div class="detail-stat-info">
+              <span class="detail-stat-label">Finalizados</span>
+              <span class="detail-stat-value orange">{{ cursosFinalizados }}</span>
             </div>
-            
-            <hr>
-            
-            <div class="stat-row">
-              <span>Total Inscripciones:</span>
-              <strong>{{ totalEstudiantes }}</strong>
+            <div class="detail-stat-bar">
+              <div class="detail-bar-fill orange" 
+                   [style.width.%]="totalCursos > 0 ? (cursosFinalizados / totalCursos * 100) : 0"></div>
             </div>
-            <div class="stat-row">
-              <span>Tasa de Graduación:</span>
-              <strong>{{ totalEstudiantes > 0 ? (estudiantesGraduados / totalEstudiantes * 100) : 0 | number:'1.0-0' }}%</strong>
+          </div>
+
+          <div class="detail-stat-item">
+            <div class="detail-stat-info">
+              <span class="detail-stat-label">Cancelados</span>
+              <span class="detail-stat-value red">{{ cursosCancelados }}</span>
+            </div>
+            <div class="detail-stat-bar">
+              <div class="detail-bar-fill red" 
+                   [style.width.%]="totalCursos > 0 ? (cursosCancelados / totalCursos * 100) : 0"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="detail-divider"></div>
+
+        <div class="detail-info-items">
+          <div class="info-item">
+            <i class="bi bi-currency-dollar"></i>
+            <div>
+              <p class="info-label">Precio Promedio</p>
+              <p class="info-value">S/{{ precioPromedio | number:'1.2-2' }}</p>
+            </div>
+          </div>
+          <div class="info-item">
+            <i class="bi bi-clock"></i>
+            <div>
+              <p class="info-label">Duración Promedio</p>
+              <p class="info-value">{{ duracionPromedio | number:'1.0-0' }} horas</p>
             </div>
           </div>
         </div>
       </div>
+
+      <!-- Estadísticas de Estudiantes -->
+      <div class="detail-card">
+        <div class="detail-header">
+          <div class="detail-icon blue">
+            <i class="bi bi-people"></i>
+          </div>
+          <div>
+            <h3>Estadísticas de Estudiantes</h3>
+            <p>Resumen de estados</p>
+          </div>
+        </div>
+
+        <div class="detail-stats">
+          <div class="detail-stat-item">
+            <div class="detail-stat-info">
+              <span class="detail-stat-label">Activos</span>
+              <span class="detail-stat-value green">{{ estudiantesActivos }}</span>
+            </div>
+            <div class="detail-stat-bar">
+              <div class="detail-bar-fill green" 
+                   [style.width.%]="totalEstudiantes > 0 ? (estudiantesActivos / totalEstudiantes * 100) : 0"></div>
+            </div>
+          </div>
+
+          <div class="detail-stat-item">
+            <div class="detail-stat-info">
+              <span class="detail-stat-label">Inactivos</span>
+              <span class="detail-stat-value gray">{{ estudiantesInactivos }}</span>
+            </div>
+            <div class="detail-stat-bar">
+              <div class="detail-bar-fill gray" 
+                   [style.width.%]="totalEstudiantes > 0 ? (estudiantesInactivos / totalEstudiantes * 100) : 0"></div>
+            </div>
+          </div>
+
+          <div class="detail-stat-item">
+            <div class="detail-stat-info">
+              <span class="detail-stat-label">Graduados</span>
+              <span class="detail-stat-value purple">{{ estudiantesGraduados }}</span>
+            </div>
+            <div class="detail-stat-bar">
+              <div class="detail-bar-fill purple" 
+                   [style.width.%]="totalEstudiantes > 0 ? (estudiantesGraduados / totalEstudiantes * 100) : 0"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="detail-divider"></div>
+
+        <div class="detail-info-items">
+          <div class="info-item">
+            <i class="bi bi-person-check"></i>
+            <div>
+              <p class="info-label">Total Inscripciones</p>
+              <p class="info-value">{{ totalEstudiantes }}</p>
+            </div>
+          </div>
+          <div class="info-item">
+            <i class="bi bi-trophy"></i>
+            <div>
+              <p class="info-label">Tasa de Graduación</p>
+              <p class="info-value">{{ totalEstudiantes > 0 ? (estudiantesGraduados / totalEstudiantes * 100) : 0 | number:'1.0-0' }}%</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
-    
-    <div class="row g-4 mb-4">
-      <div class="col-lg-6">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">
-              <i class="bi bi-tag"></i> Cursos por Categoría
-            </h5>
-            <hr>
-            
-            <div *ngIf="categorias.length === 0" class="alert alert-info">
-              No hay categorías registradas.
-            </div>
-            
-            <div *ngFor="let cat of categorias" class="category-item">
-              <div class="d-flex justify-content-between align-items-center mb-2">
-                <span>{{ cat.nombre }}</span>
-                <span class="badge bg-primary">{{ cat.cantidad }}</span>
-              </div>
-              <div class="progress" style="height: 8px;">
-                <div class="progress-bar" 
-                     [style.width.%]="(cat.cantidad / totalCursos) * 100"></div>
-              </div>
-            </div>
+
+    <!-- Bottom Grid -->
+    <div class="bottom-grid">
+      
+      <!-- Cursos por Categoría -->
+      <div class="category-card">
+        <div class="card-header-modern">
+          <div class="header-icon-modern purple">
+            <i class="bi bi-tag"></i>
+          </div>
+          <div>
+            <h3>Cursos por Categoría</h3>
+            <p>Distribución de cursos</p>
           </div>
         </div>
-      </div>
-      
-      <div class="col-lg-6">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">
-              <i class="bi bi-trophy"></i> Cursos Más Populares
-            </h5>
-            <hr>
-            
-            <div *ngIf="cursosPopulares.length === 0" class="alert alert-info">
-              No hay cursos registrados.
-            </div>
-            
-            <div *ngFor="let curso of cursosPopulares; let i = index" class="popular-course-item">
-              <div class="d-flex align-items-center">
-                <div class="rank-badge">{{ i + 1 }}</div>
-                <div class="flex-grow-1 ms-3">
-                  <strong>{{ curso.nombre }}</strong>
-                  <br>
-                  <small class="text-muted">
-                    <i class="bi bi-people"></i> {{ curso.estudiantesInscritos }} estudiantes
-                  </small>
+
+        <div *ngIf="categorias.length === 0" class="empty-state-mini">
+          <i class="bi bi-inbox"></i>
+          <p>No hay categorías registradas</p>
+        </div>
+
+        <div *ngIf="categorias.length > 0" class="categories-list">
+          <div *ngFor="let cat of categorias; let i = index" class="category-item-modern">
+            <div class="category-rank">{{ i + 1 }}</div>
+            <div class="category-info-modern">
+              <p class="category-name">{{ cat.nombre }}</p>
+              <div class="category-progress">
+                <div class="category-progress-bar">
+                  <div class="category-progress-fill" 
+                       [style.width.%]="(cat.cantidad / totalCursos) * 100"></div>
                 </div>
-                <a [routerLink]="['/cursos/detalle', curso.id]" class="btn btn-sm btn-outline-primary">
-                  Ver
-                </a>
+                <span class="category-count">{{ cat.cantidad }} cursos</span>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    
-    <div class="row">
-      <div class="col-12">
-        <div class="card bg-light">
-          <div class="card-body text-center">
-            <h5><i class="bi bi-info-circle"></i> Resumen General</h5>
-            <p class="mb-0">
-              Tienes <strong>{{ totalCursos }}</strong> cursos con un total de 
-              <strong>{{ totalEstudiantes }}</strong> estudiantes inscritos.
-              El promedio de estudiantes por curso es de 
-              <strong>{{ totalCursos > 0 ? (totalEstudiantes / totalCursos) : 0 | number:'1.0-0' }}</strong> estudiantes.
-            </p>
+
+      <!-- Cursos Más Populares -->
+      <div class="popular-card">
+        <div class="card-header-modern">
+          <div class="header-icon-modern orange">
+            <i class="bi bi-trophy"></i>
+          </div>
+          <div>
+            <h3>Cursos Más Populares</h3>
+            <p>Top 5 cursos</p>
+          </div>
+        </div>
+
+        <div *ngIf="cursosPopulares.length === 0" class="empty-state-mini">
+          <i class="bi bi-inbox"></i>
+          <p>No hay cursos registrados</p>
+        </div>
+
+        <div *ngIf="cursosPopulares.length > 0" class="popular-list">
+          <div *ngFor="let curso of cursosPopulares; let i = index" class="popular-item-modern">
+            <div class="popular-rank" [class.rank-gold]="i === 0" [class.rank-silver]="i === 1" [class.rank-bronze]="i === 2">
+              <i class="bi" [ngClass]="{
+                'bi-trophy-fill': i === 0,
+                'bi-award-fill': i === 1 || i === 2,
+                'bi-star-fill': i > 2
+              }"></i>
+              <span>{{ i + 1 }}</span>
+            </div>
+            <div class="popular-info-modern">
+              <h4 class="popular-title">{{ curso.nombre }}</h4>
+              <div class="popular-meta">
+                <span class="meta-badge">
+                  <i class="bi bi-people"></i>
+                  {{ curso.estudiantesInscritos }} estudiantes
+                </span>
+                <span class="meta-badge">
+                  <i class="bi bi-tag"></i>
+                  {{ curso.categoria }}
+                </span>
+              </div>
+            </div>
+            <a [routerLink]="['/cursos/detalle', curso.id]" class="popular-action">
+              <i class="bi bi-arrow-right"></i>
+            </a>
           </div>
         </div>
       </div>
+
     </div>
+
+    <!-- Summary Card -->
+    <div class="summary-card">
+      <div class="summary-icon">
+        <i class="bi bi-lightbulb"></i>
+      </div>
+      <div class="summary-content">
+        <h3>Resumen General</h3>
+        <p>
+          Tienes <strong>{{ totalCursos }}</strong> cursos con un total de 
+          <strong>{{ totalEstudiantes }}</strong> estudiantes inscritos.
+          El promedio de estudiantes por curso es de 
+          <strong>{{ totalCursos > 0 ? (totalEstudiantes / totalCursos) : 0 | number:'1.0-0' }}</strong> estudiantes.
+        </p>
+      </div>
+    </div>
+
   </div>
 </div>
