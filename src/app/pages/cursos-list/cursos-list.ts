@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { CursoService } from '../../services/curso';
 import { Curso } from '../../models/curso';
 import { Loading } from '../../components/loading/loading';
+import { AuthService } from '../../services/auth';
+
 
 @Component({
   selector: 'app-cursos-list',

@@ -1,0 +1,84 @@
+<div class="admin-wrapper">
+  <div class="admin-header">
+    <div class="header-content">
+      <div class="title-section">
+        <div class="icon-badge">
+          <i class="bi bi-shield-lock"></i>
+        </div>
+        <div>
+          <h1>Panel de Administración</h1>
+          <p>Gestión de usuarios y roles</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="admin-content">
+    
+    <div class="info-banner">
+      <i class="bi bi-info-circle"></i>
+      <div>
+        <h3>Gestión de Roles</h3>
+        <p>Como administrador puedes cambiar los roles de los usuarios entre Admin y Usuario normal.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header-custom">
+        <div class="header-icon purple">
+          <i class="bi bi-people"></i>
+        </div>
+        <div>
+          <h3>Usuarios Registrados</h3>
+          <p>Lista completa de usuarios</p>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Email</th>
+              <th>UID</th>
+              <th>Rol Actual</th>
+              <th>Fecha Registro</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let usuario of usuarios$ | async">
+              <td>
+                <div class="user-info">
+                  <div class="user-avatar">
+                    <i class="bi bi-person-circle"></i>
+                  </div>
+                  <span>{{ usuario.email }}</span>
+                </div>
+              </td>
+              <td>
+                <code class="uid-code">{{ usuario.uid | slice:0:8 }}...</code>
+              </td>
+              <td>
+                <span class="badge-rol" [class.badge-admin]="usuario.rol === 'admin'">
+                  <i class="bi" [ngClass]="usuario.rol === 'admin' ? 'bi-shield-fill' : 'bi-person-fill'"></i>
+                  {{ usuario.rol }}
+                </span>
+              </td>
+              <td>{{ usuario.createdAt?.toDate() | date:'dd/MM/yyyy' }}</td>
+              <td>
+                <button 
+                  class="btn-change-rol"
+                  [class.btn-demote]="usuario.rol === 'admin'"
+                  (click)="cambiarRol(usuario.uid, usuario.rol)">
+                  <i class="bi" [ngClass]="usuario.rol === 'admin' ? 'bi-arrow-down-circle' : 'bi-arrow-up-circle'"></i>
+                  {{ usuario.rol === 'admin' ? 'Quitar Admin' : 'Hacer Admin' }}
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>

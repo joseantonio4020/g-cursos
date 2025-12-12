@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { AuthGuard } from '@angular/fire/auth-guard';
 import { authGuard } from './guards/auth-guard';
 import { Register } from './pages/register/register';
+import { adminGuard } from './guards/admin-guard';
 
 export const routes: Routes = [
   {
@@ -71,6 +72,11 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/estadisticas/estadisticas').then(m => m.Estadisticas),
     canActivate: [authGuard]
   },
+  {
+  path: 'admin',
+  loadComponent: () => import('./pages/admin/admin').then(m => m.AdminComponent),
+  canActivate: [authGuard, adminGuard]
+},
   {
     path: '**',
     loadComponent: () => import('./pages/not-found/not-found').then(m => m.NotFound)

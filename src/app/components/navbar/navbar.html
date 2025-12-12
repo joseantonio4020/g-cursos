@@ -29,6 +29,12 @@
           <i class="bi bi-graph-up"></i>
           <span>Estadísticas</span>
         </a>
+        
+        <!-- NUEVO: Opción Admin -->
+        <a *ngIf="esAdmin()" routerLink="/admin" routerLinkActive="active" class="nav-link-custom admin-link">
+          <i class="bi bi-shield-lock"></i>
+          <span>Admin</span>
+        </a>
       </div>
       
       <div class="navbar-actions">
@@ -36,7 +42,14 @@
           <div class="user-avatar">
             <i class="bi bi-person-circle"></i>
           </div>
-          <span class="user-email">{{ user.email }}</span>
+          <div class="user-details">
+            <span class="user-email">{{ user.email }}</span>
+            <!-- NUEVO: Mostrar rol -->
+            <span class="user-rol" [class.rol-admin]="esAdmin()">
+              <i class="bi" [ngClass]="esAdmin() ? 'bi-shield-fill' : 'bi-person-fill'"></i>
+              {{ esAdmin() ? 'Admin' : 'Usuario' }}
+            </span>
+          </div>
         </div>
         
         <button class="btn-logout" *ngIf="authService.user$ | async" (click)="logout()">

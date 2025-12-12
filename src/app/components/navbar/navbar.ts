@@ -1,7 +1,8 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../services/auth';
+import { RolService } from '../../services/rol';
 
 @Component({
   selector: 'app-navbar',
@@ -10,11 +11,20 @@ import { AuthService } from '../../services/auth';
   templateUrl: './navbar.html',
   styleUrls: ['./navbar.css']
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
   authService = inject(AuthService);
+  rolService = inject(RolService);
   router = inject(Router);
   
   isMenuOpen = false;
+  
+  async ngOnInit() {
+    this.authService.user$.subscribe(async (user) => {
+      if (user) {
+        await this.authService.cargarRolUsuarioActual();
+      }
+    });
+  }
   
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
@@ -26,5 +36,9 @@ export class NavbarComponent {
     } catch (error) {
       console.error('Error al cerrar sesión:', error);
     }
+  }
+  
+  esAdmin(): boolean {
+    return this.rolService.esAdmin();
   }
 }
