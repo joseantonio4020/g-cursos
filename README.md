@@ -12,6 +12,8 @@
 # Gestor de Cursos - Angular + Firebase
 
 Aplicación web completa para gestionar cursos y estudiantes, desarrollada con Angular y Firebase.
+link del proyecto hecho 
+https://gestor-de-cursos-c0b27.web.app
 
 ## Características
 
@@ -94,9 +96,9 @@ src/app/
 
 ## Credenciales de Prueba
 
-Usuario: test@test.com
-Contraseña: test123
+Usuario: jose@gmail.com
+Contraseña: 123456
 
 ## Autor
 
-Tu Nombre - 2024
+jose antonio año 2025
