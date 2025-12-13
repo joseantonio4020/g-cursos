@@ -1,10 +1,3 @@
-/* ============================================
-   GESTOR DE CURSOS - ESTILOS GLOBALES
-   Autor: Tu Nombre
-   Fecha: 2024
-   Descripción: Estilos base de la aplicación
-   ============================================ */
-
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 * {
@@ -311,4 +304,37 @@ html {
     width: 100%;
     margin-bottom: 10px;
   }
+}
+/* ======================================= */
+/* REGLAS DE RESPONSIVIDAD PARA MÓVILES */
+/* ======================================= */
+
+/* @media (max-width: 768px) se aplica a móviles y tablets */
+@media (max-width: 768px) {
+    
+    /* 1. Clases de Tablas */
+    .table-responsive-scroll {
+        /* Permite que el contenido desborde el ancho del contenedor */
+        overflow-x: auto; 
+        /* Opcional: Oculta la barra de scroll vertical si no es necesaria */
+        overflow-y: hidden; 
+        /* Asegura que el contenedor ocupe el 100% del ancho */
+        width: 100%; 
+    }
+
+    .table {
+        /* Forzamos que la tabla tenga un ancho mínimo para que haya algo que deslizar (scroll) */
+        min-width: 700px; 
+    }
+
+    /* 2. Ajuste al contenedor principal (opcional, pero ayuda) */
+    .main-content {
+        /* Reduce el padding para aprovechar más el espacio */
+        padding: 15px !important; 
+    }
+
+    /* 3. Ajuste de fuentes y títulos */
+    h1 {
+        font-size: 1.7rem;
+    }
 }

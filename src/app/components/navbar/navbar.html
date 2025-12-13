@@ -8,7 +8,7 @@
     </div>
     
     <button class="navbar-toggler-custom" (click)="toggleMenu()">
-      <i class="bi" [ngClass]="isMenuOpen ? 'bi-x' : 'bi-list'"></i>
+      <i class="bi" [ngClass]="isMenuOpen ? 'bi-x' : 'bi-list'"> MENU</i>
     </button>
     
     <div class="navbar-menu" [class.show]="isMenuOpen">
@@ -57,10 +57,7 @@
           <span>Salir</span>
         </button>
         
-        <div class="auth-buttons" *ngIf="!(authService.user$ | async)">
-          <a routerLink="/login" class="btn btn-outline-custom">Ingresar</a>
-          <a routerLink="/register" class="btn btn-primary">Registrarse</a>
-        </div>
+        
       </div>
     </div>
   </div>

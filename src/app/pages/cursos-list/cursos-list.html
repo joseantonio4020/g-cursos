@@ -98,8 +98,8 @@
   
   <!-- Tabla de cursos -->
   <div class="card" *ngIf="!loading && cursosFiltrados.length > 0">
-    <div class="table-responsive">
-      <table class="table table-hover mb-0">
+    <div class="table-responsive-scroll">
+      <table class="table ">
         <thead class="table-light">
           <tr>
             <th>Nombre</th>
@@ -123,7 +123,7 @@
               <span class="badge bg-secondary">{{ curso.categoria }}</span>
             </td>
             <td>{{ curso.duracion }} hrs</td>
-            <td>${{ curso.precio }}</td>
+            <td>S/{{ curso.precio }}</td>
             <td>
               <span class="badge" 
                     [ngClass]="{
@@ -139,18 +139,18 @@
                 <a [routerLink]="['/cursos/detalle', curso.id]" 
                    class="btn btn-info text-white"
                    title="Ver detalle">
-                  <i class="bi bi-eye"></i>
+                  <i class="bi bi-eye">detalle</i>
                 </a>
                 <a [routerLink]="['/cursos/editar', curso.id]" 
                    class="btn btn-warning"
                    title="Editar">
-                  <i class="bi bi-pencil"></i>
+                  <i class="bi bi-pencil">editar</i>
                 </a>
                 <button 
                   class="btn btn-danger"
                   (click)="confirmarEliminacion(curso)"
                   title="Eliminar">
-                  <i class="bi bi-trash"></i>
+                  <i class="bi bi-trash">eliminar</i>
                 </button>
               </div>
             </td>

@@ -330,3 +330,57 @@
 
 .action-item.purple .action-icon 
 { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);}
+/* ... código CSS anterior ... */
+
+/* Main Grid */
+.main-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+/* ... código CSS anterior ... */
+
+/* Quick Actions Card */
+.quick-actions-card {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+.actions-grid {
+    /* ESTO ES LO QUE ESTÁ CAUSANDO EL PROBLEMA EN MÓVIL */
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* DOS COLUMNAS */
+    gap: 15px;
+}
+
+@media (max-width: 768px) {
+    
+    /* 1. Apila el Main Grid (Últimos Cursos y Accesos Rápidos) */
+    .main-grid {
+        display: block; /* Desactiva el layout de grid/flex y los apila */
+        margin-bottom: 20px; /* Separación entre el Quick Actions y Recent Courses */
+    }
+
+    /* 2. CORRECCIÓN CRÍTICA: Fuerza el grid de acciones a UNA SOLA columna */
+    .actions-grid {
+        grid-template-columns: 1fr; /* UNA SOLA COLUMNA en móvil */
+        gap: 20px; /* Aumenta la separación vertical entre los ítems */
+    }
+    
+    /* 3. Asegura que el contenido de cada acción tenga espacio (action-item) */
+    .action-item {
+        padding: 15px; /* Reduce un poco el padding si es necesario */
+        align-items: flex-start; /* Alinea los ítems de acción arriba */
+    }
+
+    /* 4. Ajuste de textos y títulos grandes */
+    h1 {
+        font-size: 1.8rem;
+    }
+    .welcome-title {
+        font-size: 1.8rem;
+    }
+}

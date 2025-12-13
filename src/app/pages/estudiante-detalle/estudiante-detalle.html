@@ -38,31 +38,33 @@
             </div>
             
             <hr>
-            
-            <h5><i class="bi bi-info-circle"></i> Información Personal</h5>
-            
-            <div class="row mb-4">
-              <div class="col-md-6 mb-3">
-                <strong><i class="bi bi-telephone"></i> Teléfono:</strong>
-                <p class="mb-0">{{ estudiante.telefono }}</p>
-              </div>
-              
-              <div class="col-md-6 mb-3">
-                <strong><i class="bi bi-calendar3"></i> Fecha de Nacimiento:</strong>
-                <p class="mb-0">{{ estudiante.fechaNacimiento | date:'dd/MM/yyyy' }}</p>
-              </div>
-              
-              <div class="col-md-6 mb-3">
-                <strong><i class="bi bi-person"></i> Edad:</strong>
-                <p class="mb-0">{{ getEdad() }} años</p>
-              </div>
-              
-              <div class="col-md-6 mb-3">
-                <strong><i class="bi bi-calendar-check"></i> Fecha de Inscripción:</strong>
-                <p class="mb-0">{{ estudiante.fechaInscripcion | date:'dd/MM/yyyy' }}</p>
-              </div>
-            </div>
-            
+    <h5><i class="bi bi-info-circle"></i> Información Personal</h5>
+<div class="info-personal-grid mb-4">
+    <div class="detail-row">
+        <span class="detail-label"><i class="bi bi-telephone me-2"></i> Teléfono:</span>
+        <span class="detail-value">{{ estudiante.telefono || 'N/A' }}</span>
+    </div>
+    
+    <div class="detail-row">
+        <span class="detail-label"><i class="bi bi-calendar3 me-2"></i> Fecha de Nacimiento:</span>
+        <span class="detail-value">{{ estudiante.fechaNacimiento | date:'dd/MM/yyyy'  }}</span>
+    </div>
+    
+    <div class="detail-row">
+    <span class="detail-label"><i class="bi bi-person me-2"></i> Edad:</span>
+    <span class="detail-value">{{ getEdad() }} años</span> 
+</div>
+    
+    <div class="detail-row">
+        <span class="detail-label"><i class="bi bi-calendar-check me-2"></i> Inscripción:</span>
+        <span class="detail-value">{{ estudiante.fechaInscripcion | date:'dd/MM/yyyy' }}</span>
+    </div>
+    
+    <div class="detail-row">
+        <span class="detail-label"><i class="bi bi-envelope me-2"></i> Email:</span>
+        <span class="detail-value text-break">{{ estudiante.email }}</span>
+    </div>
+</div>
             <hr>
             
             <h5><i class="bi bi-book"></i> Curso Inscrito</h5>
@@ -99,34 +101,32 @@
       </div>
       
       <div class="col-lg-4">
-        <div class="card mb-4">
-          <div class="card-body">
-            <h5 class="card-title">
-              <i class="bi bi-bar-chart"></i> Estadísticas
-            </h5>
-            <hr>
-            
-            <div class="stat-item">
-              <span class="stat-label">Días Inscrito:</span>
-              <span class="stat-value">{{ getDiasInscritos() }}</span>
-            </div>
-            
-            <div class="stat-item">
-              <span class="stat-label">Estado:</span>
-              <span class="stat-value">
-                <span class="badge"
-                      [ngClass]="{
+       <div class="card mb-4">
+    <div class="card-body">
+        <h5 class="card-title"><i class="bi bi-bar-chart"></i> Estadísticas</h5>
+        <hr>
+        
+        <div class="stat-item d-flex justify-content-between mb-2">
+            <span class="stat-label">Días Inscrito:</span>
+            <span class="stat-value text-primary fw-bold">{{ getDiasInscritos() }}</span>
+        </div>
+        
+        <div class="stat-item d-flex justify-content-between mb-2">
+            <span class="stat-label">Estado Actual:</span>
+            <span class="stat-value">
+                <span class="badge fs-6"
+                    [ngClass]="{
                         'bg-success': estudiante.estado === 'activo',
                         'bg-secondary': estudiante.estado === 'inactivo',
                         'bg-primary': estudiante.estado === 'graduado'
-                      }">
-                  {{ estudiante.estado }}
+                    }">
+                    {{ estudiante.estado }}
                 </span>
-              </span>
-            </div>
-          </div>
+            </span>
         </div>
         
+        </div>
+</div>       
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">
@@ -140,6 +140,8 @@
               <a [routerLink]="['/cursos/detalle', estudiante.cursoId]" class="btn btn-info btn-sm text-white">
                 <i class="bi bi-book"></i> Ver Curso
               </a>
+              <div>
+              </div>
               <a routerLink="/estudiantes" class="btn btn-secondary btn-sm">
                 <i class="bi bi-arrow-left"></i> Volver a Lista
               </a>
