@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/gcurso",
+    "public": "dist/gcurso/browser",
     "ignore": [
       "firebase.json",
       "**/.*",

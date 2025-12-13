@@ -25,7 +25,10 @@ export class NavbarComponent implements OnInit {
       }
     });
   }
-  
+  esRutaAuth(): boolean {
+    const url = this.router.url;
+    return url.includes('/login') || url.includes('/registro');
+  }
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
   }

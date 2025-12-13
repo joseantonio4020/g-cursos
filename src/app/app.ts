@@ -4,6 +4,8 @@ import { NavbarComponent } from './components/navbar/navbar';
 import { Routes } from '@angular/router';
 import { authGuard } from './guards/auth-guard';
 import { adminGuard } from './guards/admin-guard';
+import { Router } from '@angular/router';
+
 
 export const routes: Routes = [
 
@@ -39,5 +41,10 @@ export const routes: Routes = [
   `]
 })
 export class AppComponent {
-  title = 'gestor-cursos';
+  constructor(public router: Router) {}
+
+  mostrarHeader(): boolean {
+    const rutasOcultas = ['/login', '/registro'];
+    return !rutasOcultas.includes(this.router.url);
+  }
 }

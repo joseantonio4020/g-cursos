@@ -338,3 +338,8 @@ html {
         font-size: 1.7rem;
     }
 }
+/* En tu archivo styles.css global */
+body.login-page header,
+body.registro-page header {
+  display: none;
+}

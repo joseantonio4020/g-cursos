@@ -7,7 +7,7 @@ import { adminGuard } from './guards/admin-guard';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: '/login',
+    redirectTo: '/dashboard',
     pathMatch: 'full'
   },
   {
@@ -20,8 +20,7 @@ export const routes: Routes = [
   },
   {
     path: 'dashboard',
-    loadComponent : () => import('./pages/dashboard/dashboard').then(m => m.Dashboard ),
-    canActivate: [AuthGuard ]
+    loadComponent : () => import('./pages/dashboard/dashboard').then(m => m.Dashboard )
   },
   {
     path: 'cursos',
