@@ -14,7 +14,8 @@
 Aplicación web completa para gestionar cursos y estudiantes, desarrollada con Angular y Firebase.
 link del proyecto hecho 
 https://gestor-de-cursos-c0b27.web.app
-
+## video de como funciona el proyecto 
+https://youtu.be/6juQS4hxw4I
 ## Características
 
 - ✅ Autenticación de usuarios con Firebase Authentication
